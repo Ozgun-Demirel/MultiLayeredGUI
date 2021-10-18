@@ -13,6 +13,15 @@ from Dialogs import *
 givenClass = None
 
 
+NameText = ""
+TypeText = ""
+materialsL = [
+    {"Name":"AL2","Type": "Metal"},
+    {"Name":"Fe3","Type": "Iron"}
+]
+
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -21,55 +30,80 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self) # designer'da oluşturulmuş başlangıç uygulaması
         self.setGeometry(150, 50, 1175, 750) # uygulamanın başlangıç konumunu belirtir
         self.ui.Tab.setCurrentIndex(1) # Uygulama ilk açılışınca 0 indexli sayfayı açar (Home Page)
-        
+
+        self.loadMetals()
+
+
+
         #her sayfanın içeriğini taşıyan klasörlerle tek tek iletişim kuruyoruz:
-        #self.ui.tblV_Materials_MaterialsList_Table.setRowCount(0)
-        #self.ui.tblV_Materials_MaterialsList_Table.setColumnCount(4)
+
 
         # uygulama açıldıktan sonra yapmak istediğimiz işlemler:
         self.ui.btn_Materials_Actions_Add.clicked.connect(self.addMaterialToTableView)
 
 
-    def declaration(self):
-        sender = self.sender
-        print(sender.text())
+
+
+
+
+
+
+        #uygulama içi fonksiyonlar:
+    def loadMetals(self):
+        global materialsL
+        subIndex = 0
+        materialCount = len(materialsL)
+        self.ui.tblW_Materials_MaterialsList_Table.setRowCount(materialCount)
+        for material in materialsL:
+            self.ui.tblW_Materials_MaterialsList_Table.setItem(subIndex,0, QTableWidgetItem(material['Name']))
+            self.ui.tblW_Materials_MaterialsList_Table.setItem(subIndex,1, QTableWidgetItem(material['Type']))
+            subIndex += 1
+
+
+
+
 
     def addMaterialToTableView(self):
-        #dia(Materials_Actions_AddDialogI())
-        global givenClass
-        givenClass = Materials_Actions_AddDialogI
-        activeDialog = FindReplaceDialog()
-        activeDialog.exec()
-
-
-        if not activeDialog.isActiveWindow:
-            givenClass = None
-
+        global materialsL
+        global NameText
+        global TypeText
+        self.dialogAccess(dialogClass = Materials_Actions_AddDialogI) # istenen dialog çalışıyor
+        #buradan itibaren istenen dialog'un elemanlarını bağlıycaz:
+        self.ui.btn_AddDialog_Cancel.clicked.connect(self.DialogI.close)
+        NameText = self.ui.txt_AddDialog_Name.text()
+        TypeText = self.ui.txt_AddDialog_Type.text()
+        self.ui.btn_AddDialog_Ok.clicked.connect(self.tryIt)
+            
         
-        #text, ok = QInputDialog.getText(self,"New Item","Item Info: ")
-        #if ok and text is not None:
-        #    rowCount = self.ui.tblW_Materials_MaterialsList_Table.rowCount()
-        #    self.ui.tblW_Materials_MaterialsList_Table.insertRow(rowCount)
-        #    self.ui.tblW_Materials_MaterialsList_Table.setItem(rowCount, 0, QTableWidgetItem(text))
+    def tryIt(self):
+        global NameText
+        global TypeText
+        if NameText and TypeText != "":
+            materialsL.append({"Name":NameText,"Type":TypeText})
+            print("got your message")
+    
 
-        pass
+
+
+
+
+
+
 
 
 # bütün dialogları çalıştırmamızı sağlayacak bir hazırlık:
+    
+    def dialogAccess(self, dialogClass):
+        self.DialogI = QDialog()
+        self.ui = dialogClass()
+        self.ui.setupUi(self.DialogI)
+        self.DialogI.show()
 
-class FindReplaceDialog(QDialog): 
-    def __init__(self, parent = None):
-        super().__init__()
-        givenClass().setupUi(self)
-
-
-
-def app():
+def app(): # uygulama olarak MainWindow'un hazırlığı:
     App = QApplication(sys.argv)
     win = MainWindow()
     win.show()
     sys.exit(App.exec())
-
 app()
 
 
