@@ -21,21 +21,24 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="TabPages\TabsConnection.py">
+    <Compile Include="Dialogs\Materials_Actions_AddDialog.py" />
+    <Compile Include="Dialogs\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TryOutSpace.py" />
+    <Compile Include="ImprovedSetup.py" />
     <Compile Include="MainSetup.py" />
     <Compile Include="Main.py" />
-    <Compile Include="TabPages\Tab_CrossSection.py" />
-    <Compile Include="TabPages\Tab_Home.py">
+    <Compile Include="TabPagesUI\Tab_CrossSection.py" />
+    <Compile Include="TabPagesUI\__init__.py" />
+    <Compile Include="TabPagesUI\Tab_Home.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TabPages\Tab_LayUp.py" />
-    <Compile Include="TabPages\Tab_Materials.py" />
+    <Compile Include="TabPagesUI\Tab_LayUp.py" />
+    <Compile Include="TabPagesUI\Tab_Materials.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="TabPages\" />
+    <Folder Include="Dialogs\" />
+    <Folder Include="TabPagesUI\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
