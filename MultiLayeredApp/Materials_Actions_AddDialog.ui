@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>814</width>
-    <height>311</height>
+    <height>304</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,7 +90,7 @@
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QLineEdit" name="lineEdit_5"/>
+     <widget class="QLineEdit" name="text3"/>
     </item>
     <item row="5" column="1">
      <spacer name="verticalSpacer_3">
@@ -113,7 +113,7 @@
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="text4"/>
     </item>
     <item row="7" column="1">
      <spacer name="verticalSpacer_4">
@@ -136,7 +136,7 @@
      </widget>
     </item>
     <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_6"/>
+     <widget class="QLineEdit" name="text5"/>
     </item>
     <item row="1" column="1">
      <spacer name="verticalSpacer">
