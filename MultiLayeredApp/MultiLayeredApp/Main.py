@@ -15,11 +15,12 @@ from Dialogs import * #dialogların setupUi'ları burada
 givenClass = None
 
 materialsL = [
-    {"Name":"AL2","Type": "Metal","Text3":"test3","Text4":"","Text5":""},
+    {"Name":"AL2","Type": "Metal","material":"test3","Text4":"","Text5":""},
     {"Name":"Fe3","Type": "Iron","Text3":"","Text4":"","Text5":""}
 ]
+
 CrossSectionL = [
-    {"Name":"First","Type": "ex1","Text3":"testing3","Text4":"","Text5":""},
+    {"Name":"First","Type": "ex1","crossSection":"testing3","Text4":"","Text5":""},
     {"Name":"Second","Type": "ex2","Text3":"","Text4":"","Text5":""}
 ]
 
@@ -35,14 +36,16 @@ class MainWindow(QMainWindow):
 
         self.loadMaterialsTable() # uygulama açılışında materialsTable'ı doldurur
         self.loadCrossSectionTable()
-
+        self.ui.tblW_Materials_MaterialsList_Table.setHorizontalHeaderLabels(tuple(materialsL[0].keys()))
+        self.ui.tblW_CrossSection_MaterialsList_Table.setHorizontalHeaderLabels(tuple(CrossSectionL[0].keys()))
         #her sayfanın içeriğini taşıyan klasörlerle tek tek iletişim kuruyoruz:
 
 
         # uygulama açıldıktan sonra yapmak istediğimiz işlemler:
         self.ui.btn_Materials_Actions_Add.clicked.connect(self.addMaterialToMaterialsTable)
         self.ui.btn_Materials_Actions_Load.clicked.connect(self.loadMaterialsTable)
-
+        self.ui.tblW_Materials_MaterialsList_Table.cellClicked.connect(self.cell_was_clicked)
+        
 
         #Materials Table için edit ve remove butonlarını enabled yapmaya çalışıyorum. 
         #if self.ui.tblW_Materials_MaterialsList_Table.selectRo:
@@ -86,6 +89,11 @@ class MainWindow(QMainWindow):
                 self.ui.tblW_CrossSection_MaterialsList_Table.setItem(rowIndex,columnIndex, QTableWidgetItem(material[list(material.keys())[columnIndex]]))
             rowIndex += 1
 
+    def cell_was_clicked(self, row, column):
+        print(f"Row {row} and Column {column} was clicked")
+        values = list(materialsL[row].values())
+        innerText= values[column]
+        print(innerText)
 
 
         # dialog methodları

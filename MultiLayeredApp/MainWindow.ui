@@ -36,7 +36,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tp_Home">
      <attribute name="title">
@@ -538,6 +538,9 @@ p, li { white-space: pre-wrap; }
          <height>311</height>
         </rect>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed</set>
+       </property>
        <property name="rowCount">
         <number>0</number>
        </property>
@@ -589,7 +592,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QPushButton" name="btn_Materials_Actions_Remove">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
@@ -605,7 +608,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QPushButton" name="btn_Materials_Actions_Edit">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
@@ -768,7 +771,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QPushButton" name="btn_CrossSection_Actions2_Remove">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
@@ -784,7 +787,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QPushButton" name="btn_CrossSection_Actions2_Edit">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
